@@ -14,7 +14,7 @@ export default function Header() {
   const [isNavOpen, setIsNavOpen] = useState(false);
 
   return (
-    <nav className="w-full fixed left-0 top-0 font-bold tracking-wide bg-white">
+    <nav className="w-full fixed left-0 top-0 font-bold tracking-wide bg-[#FAF7F5]">
       <div className="flex items-center justify-between mx-3 xl:mx-[166px]">
         <a className="py-3 lg:py-5" href="#">
           <Image
@@ -28,7 +28,7 @@ export default function Header() {
         </a>
         <MenuOutlined className={`cursor-pointer py-6 px-6 lg:hidden ${isNavOpen ? "hidden" : ""}`} onClick={() => setIsNavOpen((prev) => !prev)} />
         <CloseOutlined className={`cursor-pointer py-6 px-6 lg:hidden ${isNavOpen ? "" : "hidden"}`} onClick={() => setIsNavOpen(false)} />
-        <div className={`absolute top-[64px] right-0 bg-white text-center w-full lg:hidden ${isNavOpen ? "" : "hidden"}`}>
+        <div className={`absolute top-[64px] right-0 bg-[#FAF7F5] text-center w-full lg:hidden ${isNavOpen ? "" : "hidden"}`}>
           <ul className="flex flex-col items-center text-base">
             <MenuLink href="#" title="關於 Lunar" />
             <MenuLink href="#" title="功能介紹" />
