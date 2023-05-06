@@ -3,10 +3,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { MenuOutlined, CloseOutlined } from '@ant-design/icons';
 
-const MenuLink = function (props) {
+const MenuLink = function ({href, title}) {
   return (
     <li className="w-full border-t hover:bg-[#0083FF] hover:text-white">
-      <Link href={`${props.href}`} className="block py-3">{props.title}</Link>
+      {href.startsWith("http") 
+        ? <a href={href} className="block py-3">{title}</a>
+        : <Link href={href} className="block py-3">{title}</Link>
+      }
     </li>
   )
 }
@@ -17,11 +20,11 @@ export default function Header() {
   return (
     <nav className="w-full fixed left-0 top-0 font-bold tracking-wide bg-[#FAF7F5]">
       <div className="flex items-center justify-between mx-3 xl:mx-[166px]">
-        <Link className="py-3 lg:py-5" href="#">
+        <Link className="py-3 lg:py-5" href="/">
           <Image
             src="/logo.svg"
             alt="Lunar Logo"
-            className="mr-7 dark:invert"
+            className="mr-7"
             width={156}
             height={36}
             priority
@@ -31,11 +34,11 @@ export default function Header() {
         <CloseOutlined className={`cursor-pointer py-6 px-6 lg:hidden ${isNavOpen ? "" : "hidden"}`} onClick={() => setIsNavOpen(false)} />
         <div className={`absolute top-[64px] right-0 bg-[#FAF7F5] text-center w-full lg:hidden ${isNavOpen ? "" : "hidden"}`}>
           <ul className="flex flex-col items-center text-base">
-            <MenuLink href="#" title="關於 Lunar" />
-            <MenuLink href="#" title="功能介紹" />
-            <MenuLink href="#" title="聯繫我們" />
-            <MenuLink href="#" title="登入" />
-            <MenuLink href="#" title="開始使用" />
+            <MenuLink href="/about" title="關於 Lunar" />
+            <MenuLink href="/features" title="功能介紹" />
+            <MenuLink href="/contact" title="聯繫我們" />
+            <MenuLink href="https://feijai.github.io/Lunar/#/login" title="登入" />
+            <MenuLink href="https://feijai.github.io/Lunar/#/login" title="開始使用" />
           </ul>
         </div>
         <div className="hidden lg:flex flex-auto justify-between">
@@ -45,8 +48,8 @@ export default function Header() {
             <li><Link href="#" className="py-7 px-5">聯繫我們</Link></li>
           </ul>
           <ul className="flex text-sm">
-            <li><Link className="py-2 px-4 mr-4" href="#">登入</Link></li>
-            <li><Link className="text-white py-2 px-4 bg-[#0083FF] rounded-md" href="#">開始使用</Link></li>
+            <li><a className="py-2 px-4 mr-4" href="https://feijai.github.io/Lunar/#/login">登入</a></li>
+            <li><a className="text-white py-2 px-4 bg-[#0083FF] rounded-md" href="https://feijai.github.io/Lunar/#/login">開始使用</a></li>
           </ul>
         </div>
       </div>
