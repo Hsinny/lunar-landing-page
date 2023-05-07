@@ -18,7 +18,7 @@ export default function Header() {
   const [isNavOpen, setIsNavOpen] = useState(false);
 
   return (
-    <nav className="w-full fixed left-0 top-0 font-bold tracking-wide bg-[#FAF7F5]">
+    <nav className="w-full fixed left-0 top-0 font-bold tracking-wide bg-[#FAF7F5] z-50">
       <div className="flex items-center justify-between mx-3 xl:mx-[166px]">
         <Link className="py-3 lg:py-5" href="/">
           <Image
@@ -43,9 +43,9 @@ export default function Header() {
         </div>
         <div className="hidden lg:flex flex-auto justify-between">
           <ul className="flex text-base">
-            <li><Link href="#" className="py-7 px-5">關於 Lunar</Link></li>
-            <li><Link href="#" className="py-7 px-5">功能介紹</Link></li>
-            <li><Link href="#" className="py-7 px-5">聯繫我們</Link></li>
+            <li><Link href="/about" className="py-7 px-5">關於 Lunar</Link></li>
+            <li><Link href="/features" className="py-7 px-5">功能介紹</Link></li>
+            <li><Link href="/contact" className="py-7 px-5">聯繫我們</Link></li>
           </ul>
           <ul className="flex text-sm">
             <li><a className="py-2 px-4 mr-4" href="https://feijai.github.io/Lunar/#/login">登入</a></li>
