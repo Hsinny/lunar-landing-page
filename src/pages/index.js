@@ -1,118 +1,390 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
+import { useState } from 'react';
+import Image from 'next/image';
+import Header from '@/components/header';
+import Footer from '@/components/footer';
+import {
+  AppstoreAddOutlined,
+  MessageOutlined,
+  CheckSquareOutlined,
+  BellOutlined,
+  UsergroupAddOutlined,
+  UnorderedListOutlined,
+  CoffeeOutlined,
+  LeftOutlined,
+  RightOutlined,
+  ClusterOutlined,
+} from '@ant-design/icons';
 
-const inter = Inter({ subsets: ['latin'] })
+const SubContext = function ({ title, subTitle, context, alignCenter }) {
+  return (
+    <div
+      className={`mx-auto max-w-[1108px] ${alignCenter ? 'text-center' : ''}`}
+    >
+      <span
+        className={`inline-block rounded-[5px] bg-pink px-4 py-2 text-sm font-bold text-white`}
+      >
+        {title}
+      </span>
+      <h3 className="py-3 text-[32px] font-bold leading-10">{subTitle}</h3>
+      <p className="inline-block max-w-[542px] text-grey66">{context}</p>
+    </div>
+  );
+};
+const CustomerLogos = () => {
+  let arrLists = [
+    'img_logo_00.png',
+    'img_logo_01.png',
+    'img_logo_02.png',
+    'img_logo_03.png',
+    'img_logo_04.png',
+    'img_logo_05.png',
+    'img_logo_06.png',
+    'img_logo_07.png',
+    'img_logo_08.png',
+    'img_logo_09.png',
+    'img_logo_10.png',
+    'img_logo_11.png',
+    'img_logo_12.png',
+    'img_logo_13.png',
+    'img_logo_14.png',
+    'img_logo_15.png',
+    'img_logo_16.png',
+  ];
+
+  let lists = [];
+
+  for (let i = 0; i < arrLists.length; i++) {
+    lists.push(
+      <Image key={i} src={`/images/${arrLists[i]}`} width={164} height={80} className="max-h-[10vw]" />
+    );
+  }
+  return <>{lists}</>;
+};
+
+let scrollWidth = '0px';
 
 export default function Home() {
+  const [imageUrl, setImageUrl] = useState('img_advantage_1.png');
+
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/pages/index.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
+    <>
+      <Header />
+      <main className="mt-[64px] lg:mt-[76px]">
+        <div
+          id="banner"
+          className="relative bg-bgcolor bg-[url('/images/img_banner_sm.png')] bg-no-repeat pb-8 lg:bg-white lg:bg-none lg:pb-12"
+        >
+          <div className="absolute w-full bg-bgcolor lg:h-[800px] lg:bg-banner-img lg:bg-banner-position lg:bg-no-repeat"></div>
+          <div className="relative px-3 text-center">
+            <h1 className="pb-3 pt-12 text-[28px] font-bold leading-tight lg:text-5xl">
+              Lunar 讓團隊更容易管理
+              <br />
+              專案和任務
+            </h1>
+            <h2 className="py-3 text-sm lg:text-lg">
+              將您所有任務、團隊成員都整合在一起，追蹤並管理一切事務！
+            </h2>
+            <div className="mb-6">
+              <input
+                type="text"
+                className="mb-3 mr-3 rounded-lg border border-greyD5 bg-white px-4 py-3"
+                placeholder="輸入 Email"
+              />
+              <button className="rounded-md bg-blue px-6 py-3 text-white">
+                開始使用
+              </button>
+            </div>
+          </div>
+          <div className="relative px-3">
             <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
+              src="/images/img_banner.png"
+              alt="Banner"
+              className="mx-auto drop-shadow-banner hover:cursor-banner"
+              width={1108}
+              height={616}
             />
-          </a>
+          </div>
         </div>
-      </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
+        <div
+          id="advantage"
+          className="px-3 pt-9 lg:bg-advantage-img lg:bg-advantage-position lg:bg-no-repeat lg:pt-12"
         >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
+          <SubContext
+            title="便利功能"
+            subTitle="超高生產力工具"
+            context="Lunar 提供各種功能，讓您專注於任務的執行。為您的工作流程與團隊，帶來超高效與組織化的體驗，讓您的工作流程更加流暢，更快完成任務。"
+            alignCenter={false}
+          />
+          <div className="mx-auto mb-12 mt-8 flex max-w-[1108px] flex-col overflow-hidden rounded-lg bg-white shadow-3xl lg:flex-row">
+            <ul className="flex flex-col px-4 py-6 lg:p-8">
+              <li
+                className="mb-3 flex cursor-pointer items-start px-4 py-3 hover:bg-greyF7"
+                onClick={() => {
+                  setImageUrl('img_advantage_1.png');
+                }}
+              >
+                <AppstoreAddOutlined className="rounded-lg bg-green p-2 text-sm leading-[14px] text-white" />
+                <div className="ml-3 lg:ml-6">
+                  <h4 className="text-lg font-bold lg:text-2xl">任務看板</h4>
+                  <p className="max-w-[390px] text-sm">
+                    將所有任務以卡片列表形式展示，可隨時添加、編輯、刪除、標記為完成、設置截止日期等。
+                  </p>
+                </div>
+              </li>
+              <li
+                className="mb-3 flex cursor-pointer items-start px-4 py-3 hover:bg-greyF7"
+                onClick={() => {
+                  setImageUrl('img_advantage_2.png');
+                }}
+              >
+                <MessageOutlined className="rounded-lg bg-blue p-2 text-sm leading-[14px] text-white" />
+                <div className="ml-3 lg:ml-6">
+                  <h4 className="text-lg font-bold lg:text-2xl">協作溝通</h4>
+                  <p className="max-w-[390px] text-sm">
+                    在每個任務上添加評論、附件、標籤等，以便團隊成員進行交流和討論。
+                  </p>
+                </div>
+              </li>
+              <li
+                className="mb-3 flex cursor-pointer items-start px-4 py-3 hover:bg-greyF7"
+                onClick={() => {
+                  setImageUrl('img_advantage_3.png');
+                }}
+              >
+                <CheckSquareOutlined className="rounded-lg bg-yellow p-2 text-sm leading-[14px] text-white" />
+                <div className="ml-3 lg:ml-6">
+                  <h4 className="text-lg font-bold lg:text-2xl">協作溝通</h4>
+                  <p className="max-w-[390px] text-sm">
+                    通過進度追蹤功能，可以清晰地了解專案的進展情況，以及哪些任務需要更多的關注。
+                  </p>
+                </div>
+              </li>
+            </ul>
+            <div>
+              <Image
+                src={`/images/${imageUrl}`}
+                alt="Banner"
+                className="h-full w-full min-w-[427px] object-cover object-left-top"
+                width={542}
+                height={393}
+              />
+            </div>
+          </div>
+          <SubContext
+            title="實際運用"
+            subTitle="適用於任何大型或小型專案的工作流程"
+            context=""
+            alignCenter={false}
+          />
+          <div className="overflow-hidden">
+            <div className="mx-auto max-w-[1108px]">
+              <ul className={`flex ml-[${scrollWidth}]`}>
+                <li className="mr-6 flex flex-none flex-col items-start rounded-lg border bg-bgcolor p-4 shadow-3xl">
+                  <BellOutlined className="px-1 text-xl text-blue" />
+                  <h5 className="py-1 text-lg font-bold">專案管理</h5>
+                  <p className="max-w-[217px] text-sm">
+                    透過
+                    Lunar，讓任務保持井然有序、掌握期限，以及讓團隊成員掌握一致資訊。
+                  </p>
+                </li>
+                <li className="mr-6 flex flex-none flex-col items-start rounded-lg border bg-bgcolor p-4 shadow-3xl">
+                  <UsergroupAddOutlined className="px-1 text-xl text-blue" />
+                  <h5 className="py-1 text-lg font-bold">會議</h5>
+                  <p className="max-w-[217px] text-sm">
+                    讓您的團隊會議更有成效、更強大，並且我們敢說，會更加有趣。
+                  </p>
+                </li>
+                <li className="mr-6 flex flex-none flex-col items-start rounded-lg border bg-bgcolor p-4 shadow-3xl">
+                  <UnorderedListOutlined className="px-1 text-xl text-blue" />
+                  <h5 className="py-1 text-lg font-bold">新手訓練</h5>
+                  <p className="max-w-[217px] text-sm">
+                    透過 Lunar
+                    的待辦事項、資源和進度追蹤版面配置，快速完成新公司入職手續或著手開始新專案。
+                  </p>
+                </li>
+                <li className="mr-6 flex flex-none flex-col items-start rounded-lg border bg-bgcolor p-4 shadow-3xl">
+                  <AppstoreAddOutlined className="px-1 text-xl text-blue" />
+                  <h5 className="py-1 text-lg font-bold">任務管理</h5>
+                  <p className="max-w-[217px] text-sm">
+                    使用 Lunar
+                    追蹤、管理、完成和彙集任務，就像拼圖一樣，每次都能讓團隊的專案取得一致成功。
+                  </p>
+                </li>
+                <li className="mr-6 flex flex-none flex-col items-start rounded-lg border bg-bgcolor p-4 shadow-3xl">
+                  <CoffeeOutlined className="px-1 text-xl text-blue" />
+                  <h5 className="py-1 text-lg font-bold">腦力激盪</h5>
+                  <p className="max-w-[217px] text-sm">
+                    發揮團隊的創造力，讓想法醒目可見、可合力完成且付諸實現。
+                  </p>
+                </li>
+              </ul>
+            </div>
+            <div className="mx-auto mt-8 max-w-[1108px] text-right">
+              <LeftOutlined className="cursor-pointer rounded-full bg-blue p-4 text-xs text-white" />
+              <RightOutlined className="ml-8 cursor-pointer rounded-full bg-blue p-4 text-xs text-white" />
+            </div>
+          </div>
+        </div>
+        <div
+          id="partner"
+          className="mx-auto max-w-[1108px] px-3 text-center lg:px-0"
         >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
+          <h5 className="mb-8 mt-11 text-lg lg:mb-14 lg:mt-24 lg:text-2xl">
+            和超過 50,000 個來自世界各地的團隊一起使用 Lunar，以完成更多工作。
+          </h5>
+          <div className="flex flex-wrap justify-center">
+            <CustomerLogos />
+          </div>
+        </div>
+        <div
+          id="customer"
+          className="mx-auto mb-8 mt-6 max-w-[1108px] px-3 lg:px-0"
         >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Discover and deploy boilerplate example Next.js&nbsp;projects.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
+          <div className="rounded-lg bg-bgcolor p-7 text-center lg:mb-12 lg:mt-8">
+            <Image
+              src="/images/img_mark_quot.png"
+              alt="Quotation Marks"
+              className="mx-auto mb-5 lg:mb-7"
+              width={26}
+              height={24}
+            />
+            <div className="mx-auto mb-4 max-w-[700px] text-sm lg:mb-6">
+              <p>
+                它使我們更好地協作、更好地了解每個專案的進度，並更快地做出決策。
+              </p>
+              <p>
+                Lunar
+                的簡單易用性是我們最喜歡的功能之一，而且它可以隨時隨地訪問，即使在外出工作時也可以查看專案的進度。現在，我們將
+                Lunar 作為我們的主要專案管理工具。
+              </p>
+            </div>
+            <div className="mb-8 flex justify-center">
+              <Image
+                src="/images/img_customer_1.png"
+                alt="Elenator / 設計總監"
+                className="mr-4 rounded-full"
+                width={48}
+                height={48}
+              />
+              <div className="flex flex-col text-left">
+                <h6 className="font-bold">Elenator / 設計總監</h6>
+                <p>Dylan Field</p>
+              </div>
+            </div>
+            <ul className="flex justify-center">
+              <li className="mr-2 inline-block rounded-full bg-pink p-1"></li>
+              <li className="mr-2 inline-block rounded-full bg-greyD5 p-1 hover:bg-pink"></li>
+              <li className="inline-block rounded-full bg-greyD5 p-1 hover:bg-pink"></li>
+            </ul>
+          </div>
+        </div>
+        <div
+          id="manage"
+          className="bg-blue100 px-3 pb-6 pt-9 lg:px-0 lg:pb-12 lg:pt-14"
         >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+          <SubContext
+            title="輕鬆管理"
+            subTitle="使用 Lunar 讓你達到事半功倍"
+            context="Lunar  的直覺式功能可讓任何團隊快速設定和自訂工作流程，幾乎任何事情都能適用。"
+            alignCenter={false}
+          />
+          <ul className="mx-auto mt-8 flex max-w-[1108px] flex-col lg:flex-row">
+            <li className="mb-3 flex flex-1 flex-col items-start rounded-lg border-t-4 border-blue bg-bgcolor bg-card-img bg-card-position bg-no-repeat px-6 pb-12 pt-7 shadow-3xl lg:mr-6">
+              <Image
+                src="/images/lunar_pink_icon.png"
+                alt="Lunar Pink Icon"
+                className="p-1"
+                width={26}
+                height={26}
+              />
+              <h5 className="py-1 text-lg font-bold">
+                管理任何專案 (不論規模大小)
+              </h5>
+              <p className="max-w-[300px] text-sm">
+                利用單一強大工具管理所有專案，讓專案管理既可行又效果出奇。
+              </p>
+            </li>
+            <li className="mb-3 flex flex-1 flex-col items-start rounded-lg border-t-4 border-blue bg-bgcolor bg-card-img bg-card-position bg-no-repeat px-6 pb-12 pt-7 shadow-3xl lg:mr-6">
+              <CoffeeOutlined className="px-1 text-xl text-pink" />
+              <h5 className="py-1 text-lg font-bold">Lunar 讓工作煥然一新</h5>
+              <p className="max-w-[300px] text-sm">
+                輕鬆檢視完成進度，並快速識別障礙。
+              </p>
+            </li>
+            <li className="mb-3 flex flex-1 flex-col items-start rounded-lg border-t-4 border-blue bg-bgcolor bg-card-img bg-card-position bg-no-repeat px-6 pb-12 pt-7 shadow-3xl">
+              <ClusterOutlined className="px-1 text-xl text-pink" />
+              <h5 className="py-1 text-lg font-bold">簡化流程追蹤</h5>
+              <p className="max-w-[300px] text-sm">
+                以視覺版面配置，在 Lunar
+                中呈現所有重要任務、截止日期和所有者，輕鬆提升業務透明度。
+              </p>
+            </li>
+          </ul>
+        </div>
+        <div id="price" className="mt-11 px-3 lg:px-0 lg:bg-bottom-img lg:bg-bottom-position lg:bg-no-repeat">
+          <SubContext
+            title="定價"
+            subTitle="輕鬆組織您的工作，免費使用"
+            context="立即提高你的團隊工作效率"
+            alignCenter={true}
+          />
+          <ul className="mt-8 flex flex-col justify-center lg:flex-row">
+            <li className="mb-3 basis-64 rounded-lg border-[3px] border-greyD5 shadow-3xl lg:mr-6 lg:basis-[353px]">
+              <div className="px-9 pb-6 pt-8 text-center lg:pt-10">
+                <h6 className="text-2xl font-bold">Basic</h6>
+                <span className="align-middle text-lg font-bold">$</span>
+                <span className="align-middle text-5xl font-bold">0</span>
+                <p className="text-sm text-grey9F">終生免費</p>
+              </div>
+              <hr />
+              <div className="px-9 pb-8 pt-6 lg:pb-10">
+                <p className="mb-9 text-sm">
+                  適用於 1 - 10 個用戶
+                  <br />
+                  想要組織專案的個人或團隊
+                </p>
+                <button className="w-full rounded-[5px] bg-greyE9 py-3 text-sm">
+                  選擇方案
+                </button>
+              </div>
+            </li>
+            <li className="mb-3 basis-64 rounded-lg border-[3px] border-blue shadow-3xl lg:basis-[353px]">
+              <div className="px-9 pb-6 pt-8 text-center lg:pt-10">
+                <h6 className="text-2xl font-bold">Standard</h6>
+                <span className="align-middle text-lg font-bold text-blue">
+                  $
+                </span>
+                <span className="align-middle text-5xl font-bold text-blue">
+                  1,200
+                </span>
+                <p className="text-sm text-grey9F">平均 $100 /月</p>
+              </div>
+              <hr />
+              <div className="px-9 pb-8 pt-6 lg:pb-10">
+                <p className="mb-9 text-sm">
+                  適用於需要以多種方式 (包括看板、時間表和行事曆等)
+                  追蹤和呈現多個專案的團隊。
+                </p>
+                <button className="w-full rounded-[5px] bg-greyE9 py-3 text-sm">
+                  選擇方案
+                </button>
+              </div>
+            </li>
+          </ul>
+          <div className="mx-auto mb-8 mt-[52px] flex h-60 max-w-[1108px] flex-col items-center justify-center rounded-lg bg-[url('/images/img_footer.png')] bg-no-repeat lg:mb-12 lg:mt-[84px]">
+            <h6 className="mb-6 text-2xl font-bold text-white">
+              立即開啟您的體驗行程
+            </h6>
+            <a
+              className="rounded-md bg-[#0083FF] px-4 py-2 text-white"
+              href="https://feijai.github.io/Lunar/#/login"
+            >
+              開始使用
+            </a>
+          </div>
+        </div>
+      </main>
+      <Footer />
+    </>
+  );
 }
