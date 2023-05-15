@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import Image from 'next/image';
-import Header from '@/components/header';
-import Footer from '@/components/footer';
+import Layout from './components/layout';
 import {
   AppstoreAddOutlined,
   MessageOutlined,
@@ -55,7 +54,7 @@ const CustomerLogos = () => {
 
   for (let i = 0; i < arrLists.length; i++) {
     lists.push(
-      <Image key={i} src={`/images/${arrLists[i]}`} width={164} height={80} className="max-h-[10vw]" />
+      <Image key={i} src={`/images/${arrLists[i]}`} alt="Customer Logo" width={164} height={80} className="max-w-[20vw]" />
     );
   }
   return <>{lists}</>;
@@ -67,8 +66,7 @@ export default function Home() {
   const [imageUrl, setImageUrl] = useState('img_advantage_1.png');
 
   return (
-    <>
-      <Header />
+    <Layout>
       <main className="mt-[64px] lg:mt-[76px]">
         <div
           id="banner"
@@ -384,7 +382,6 @@ export default function Home() {
           </div>
         </div>
       </main>
-      <Footer />
-    </>
+    </Layout>
   );
 }
