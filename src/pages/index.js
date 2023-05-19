@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import Layout from './components/layout';
+import Carousel from '../components/Carousel';
 import {
   AppstoreAddOutlined,
   MessageOutlined,
@@ -14,10 +16,10 @@ import {
   ClusterOutlined,
 } from '@ant-design/icons';
 
-const SubContext = function ({ title, subTitle, context, alignCenter }) {
+const SubContext = function ({ title, subTitle, context, className, alignCenter }) {
   return (
     <div
-      className={`mx-auto max-w-[1108px] ${alignCenter ? 'text-center' : ''}`}
+      className={`mx-auto max-w-[1108px] ${className} ${alignCenter ? 'text-center' : ''}`}
     >
       <span
         className={`inline-block rounded-[5px] bg-pink px-4 py-2 text-sm font-bold text-white`}
@@ -54,16 +56,32 @@ const CustomerLogos = () => {
 
   for (let i = 0; i < arrLists.length; i++) {
     lists.push(
-      <Image key={i} src={`/images/${arrLists[i]}`} alt="Customer Logo" width={164} height={80} className="max-w-[20vw]" />
+      <Image
+        key={i}
+        src={`/images/${arrLists[i]}`}
+        alt="Customer Logo"
+        width={164}
+        height={80}
+        className="max-w-[20vw]"
+      />
     );
   }
   return <>{lists}</>;
 };
 
-let scrollWidth = '0px';
 
 export default function Home() {
   const [imageUrl, setImageUrl] = useState('img_advantage_1.png');
+  const [scrollWidth, setScrollWidth] = useState(0);
+  
+  const handlePrevScroll = () => {
+    let newScrollWidth = scrollWidth + parseInt(window.innerWidth / 2);
+    setScrollWidth(newScrollWidth);
+  }
+  const handleNextScroll = () => {
+    let newScrollWidth = scrollWidth - parseInt(window.innerWidth / 2);
+    setScrollWidth(newScrollWidth);
+  }
 
   return (
     <Layout>
@@ -105,15 +123,16 @@ export default function Home() {
         </div>
         <div
           id="advantage"
-          className="px-3 pt-9 lg:bg-advantage-img lg:bg-advantage-position lg:bg-no-repeat lg:pt-12"
+          className="pt-9 lg:bg-advantage-img lg:bg-advantage-position lg:bg-no-repeat lg:pt-12"
         >
           <SubContext
             title="便利功能"
             subTitle="超高生產力工具"
             context="Lunar 提供各種功能，讓您專注於任務的執行。為您的工作流程與團隊，帶來超高效與組織化的體驗，讓您的工作流程更加流暢，更快完成任務。"
+            className="px-3"
             alignCenter={false}
           />
-          <div className="mx-auto mb-12 mt-8 flex max-w-[1108px] flex-col overflow-hidden rounded-lg bg-white shadow-3xl lg:flex-row">
+          <div className="px-3 mx-auto mb-12 mt-8 flex max-w-[1108px] flex-col overflow-hidden rounded-lg bg-white shadow-3xl lg:flex-row">
             <ul className="flex flex-col px-4 py-6 lg:p-8">
               <li
                 className="mb-3 flex cursor-pointer items-start px-4 py-3 hover:bg-greyF7"
@@ -172,11 +191,12 @@ export default function Home() {
             title="實際運用"
             subTitle="適用於任何大型或小型專案的工作流程"
             context=""
+            className="px-3"
             alignCenter={false}
           />
           <div className="overflow-hidden">
             <div className="mx-auto max-w-[1108px]">
-              <ul className={`flex ml-[${scrollWidth}]`}>
+              <ul id="scrollCard" className={`flex transition-[margin-left] duration-300`} style={{marginLeft: scrollWidth + 'px'}}>
                 <li className="mr-6 flex flex-none flex-col items-start rounded-lg border bg-bgcolor p-4 shadow-3xl">
                   <BellOutlined className="px-1 text-xl text-blue" />
                   <h5 className="py-1 text-lg font-bold">專案管理</h5>
@@ -217,9 +237,9 @@ export default function Home() {
                 </li>
               </ul>
             </div>
-            <div className="mx-auto mt-8 max-w-[1108px] text-right">
-              <LeftOutlined className="cursor-pointer rounded-full bg-blue p-4 text-xs text-white" />
-              <RightOutlined className="ml-8 cursor-pointer rounded-full bg-blue p-4 text-xs text-white" />
+            <div className="px-3 mx-auto mt-8 max-w-[1108px] text-right">
+              <LeftOutlined className="cursor-pointer rounded-full bg-blue p-4 text-xs text-white" onClick={handlePrevScroll} />
+              <RightOutlined className="ml-8 cursor-pointer rounded-full bg-blue p-4 text-xs text-white" onClick={handleNextScroll} />
             </div>
           </div>
         </div>
@@ -236,45 +256,103 @@ export default function Home() {
         </div>
         <div
           id="customer"
-          className="mx-auto mb-8 mt-6 max-w-[1108px] px-3 lg:px-0"
+          className="mx-auto mb-8 mt-6 max-w-[1108px] overflow-hidden px-3 lg:px-0"
         >
-          <div className="rounded-lg bg-bgcolor p-7 text-center lg:mb-12 lg:mt-8">
-            <Image
-              src="/images/img_mark_quot.png"
-              alt="Quotation Marks"
-              className="mx-auto mb-5 lg:mb-7"
-              width={26}
-              height={24}
-            />
-            <div className="mx-auto mb-4 max-w-[700px] text-sm lg:mb-6">
-              <p>
-                它使我們更好地協作、更好地了解每個專案的進度，並更快地做出決策。
-              </p>
-              <p>
-                Lunar
-                的簡單易用性是我們最喜歡的功能之一，而且它可以隨時隨地訪問，即使在外出工作時也可以查看專案的進度。現在，我們將
-                Lunar 作為我們的主要專案管理工具。
-              </p>
-            </div>
-            <div className="mb-8 flex justify-center">
-              <Image
-                src="/images/img_customer_1.png"
-                alt="Elenator / 設計總監"
-                className="mr-4 rounded-full"
-                width={48}
-                height={48}
-              />
-              <div className="flex flex-col text-left">
-                <h6 className="font-bold">Elenator / 設計總監</h6>
-                <p>Dylan Field</p>
+          <div className="flex flex-col rounded-lg bg-bgcolor p-7 text-center lg:mb-12 lg:mt-8">
+            <Carousel>
+              <div key="slide1" className="w-full flex-none">
+                <Image
+                  src="/images/img_mark_quot.png"
+                  alt="Quotation Marks"
+                  className="mx-auto mb-5 lg:mb-7"
+                  width={26}
+                  height={24}
+                />
+                <div className="mx-auto mb-4 max-w-[700px] text-sm lg:mb-6">
+                  <p>
+                    它使我們更好地協作、更好地了解每個專案的進度，並更快地做出決策。
+                  </p>
+                  <p>
+                    Lunar
+                    的簡單易用性是我們最喜歡的功能之一，而且它可以隨時隨地訪問，即使在外出工作時也可以查看專案的進度。現在，我們將
+                    Lunar 作為我們的主要專案管理工具。
+                  </p>
+                </div>
+                <div className="mb-8 flex justify-center">
+                  <Image
+                    src="/images/img_customer_1.png"
+                    alt="Elenator / 設計總監"
+                    className="mr-4 rounded-full"
+                    width={48}
+                    height={48}
+                  />
+                  <div className="flex flex-col text-left">
+                    <h6 className="font-bold">Elenator / 設計總監</h6>
+                    <p>Dylan Field</p>
+                  </div>
+                </div>
               </div>
-            </div>
-            <ul className="flex justify-center">
-              <li className="mr-2 inline-block rounded-full bg-pink p-1"></li>
-              <li className="mr-2 inline-block rounded-full bg-greyD5 p-1 hover:bg-pink"></li>
-              <li className="inline-block rounded-full bg-greyD5 p-1 hover:bg-pink"></li>
-            </ul>
+              <div key="slide2" className="w-full flex-none">
+                <Image
+                  src="/images/img_mark_quot.png"
+                  alt="Quotation Marks"
+                  className="mx-auto mb-5 lg:mb-7"
+                  width={26}
+                  height={24}
+                />
+                <div className="mx-auto mb-4 max-w-[700px] text-sm lg:mb-6">
+                  <p>
+                    一個強大的專案管理工具，以看板的方式讓團隊成員可以視覺化地追蹤工作流程。使用者可以在看板上創建列表，並將任務或工作卡片拖放到相應的列表中，以表示進展狀態。它還支持分配負責人、設定截止日期、添加評論和附件等功能，以協助團隊有效地組織和跟進工作。
+                  </p>
+                </div>
+                <div className="mb-8 flex justify-center">
+                  <Image
+                    src="/images/img_customer_2.png"
+                    alt="Jason / 專案管理師"
+                    className="mr-4 rounded-full"
+                    width={48}
+                    height={48}
+                  />
+                  <div className="flex flex-col text-left">
+                    <h6 className="font-bold">Jason / 專案管理師</h6>
+                    <p>Hyred Workplace</p>
+                  </div>
+                </div>
+              </div>
+              <div key="slide3" className="w-full flex-none">
+                <Image
+                  src="/images/img_mark_quot.png"
+                  alt="Quotation Marks"
+                  className="mx-auto mb-5 lg:mb-7"
+                  width={26}
+                  height={24}
+                />
+                <div className="mx-auto mb-4 max-w-[700px] text-sm lg:mb-6">
+                  <p>
+                    Lunar 提供了一個簡單而直觀的方式來協同工作。它允許使用者在一個共享的看板上建立多個列表和卡片，讓團隊成員可以即時查看和更新工作進度。使用者可以在卡片上添加標籤、設置提醒、指派成員，並利用評論功能進行即時討論。這種協同工作的方式有助於促進團隊合作，提高生產力。
+                  </p>
+                </div>
+                <div className="mb-8 flex justify-center">
+                  <Image
+                    src="/images/img_customer_3.png"
+                    alt="Lisa / 人資主管"
+                    className="mr-4 rounded-full"
+                    width={48}
+                    height={48}
+                  />
+                  <div className="flex flex-col text-left">
+                    <h6 className="font-bold">Lisa / 人資主管</h6>
+                    <p>Mono Company</p>
+                  </div>
+                </div>
+              </div>
+            </Carousel>
           </div>
+          {/* <ul className="flex justify-center">
+            <li className="mr-2 inline-block rounded-full bg-greyD5 p-1 hover:bg-pink"></li>
+            <li className="mr-2 inline-block rounded-full bg-greyD5 p-1 hover:bg-pink"></li>
+            <li className="inline-block rounded-full bg-greyD5 p-1 hover:bg-pink"></li>
+          </ul> */}
         </div>
         <div
           id="manage"
@@ -319,7 +397,10 @@ export default function Home() {
             </li>
           </ul>
         </div>
-        <div id="price" className="mt-11 px-3 lg:px-0 lg:bg-bottom-img lg:bg-bottom-position lg:bg-no-repeat">
+        <div
+          id="price"
+          className="mt-11 px-3 lg:bg-bottom-img lg:bg-bottom-position lg:bg-no-repeat lg:px-0"
+        >
           <SubContext
             title="定價"
             subTitle="輕鬆組織您的工作，免費使用"
