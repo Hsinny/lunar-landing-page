@@ -9,7 +9,9 @@ export default ({ children }) => {
         <title>Lunar | 生產力工具</title>
       </Head>
       <Header />
-      {children}
+      <main className="mt-[64px] lg:mt-[76px]">
+        {children}
+      </main>
       <Footer />
     </>
   );
