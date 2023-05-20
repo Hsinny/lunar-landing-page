@@ -1,8 +1,8 @@
 import Head from 'next/head';
-import Header from './header';
-import Footer from './footer';
+import Header from './Header';
+import Footer from './Footer';
 
-export default ({ children }) => {
+const Layout = ({ children }) => {
   return (
     <>
       <Head>
@@ -15,4 +15,5 @@ export default ({ children }) => {
       <Footer />
     </>
   );
-}
+};
+export default Layout;

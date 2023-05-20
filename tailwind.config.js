@@ -13,6 +13,7 @@ module.exports = {
         'pink': '#F06A6A',
         'bgcolor': '#FAF7F5',
         'black': '#232323',
+        'grey33': '#333333',
         'grey66': '#666666',
         'greyD5': '#D5D5D5',
         'greyF7': '#F7F7F7', 

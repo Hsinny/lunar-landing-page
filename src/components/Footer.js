@@ -5,7 +5,7 @@ import { GithubOutlined } from '@ant-design/icons';
 export default function Footer() {
 
   return (
-    <footer className="text-[#9F9F9F] bg-[#333333] py-8 xl:py-12 px-3 xl:px-[166px]">
+    <footer className="text-grey9F bg-grey33 py-8 xl:py-12 px-3 xl:px-[166px]">
       <div className="flex flex-wrap justify-between items-end mb-[18px]">
         <Link href="#">
           <Image
@@ -23,7 +23,7 @@ export default function Footer() {
           <li className="mt-2"><Link href="#" className="hover:text-white">服務條款</Link></li>
         </ul>
       </div>
-      <hr className="border-[#9F9F9F]"/>
+      <hr className="border-grey9F"/>
       <div className="flex flex-wrap justify-between mt-2"> 
         <p className="mt-2">&copy; 2023, Lunar All rights reserved.</p>
         <Link href="#" className="flex items-center mt-2 hover:text-white">

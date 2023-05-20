@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
-import Layout from './components/layout';
-import Carousel from '../components/Carousel';
+import Layout from '@/components/Layout';
+import Carousel from '@/components/Carousel';
 import {
   AppstoreAddOutlined,
   MessageOutlined,
@@ -471,7 +471,7 @@ export default function Home() {
             立即開啟您的體驗行程
           </h6>
           <a
-            className="rounded-md bg-[#0083FF] px-4 py-2 text-white"
+            className="rounded-md bg-blue px-4 py-2 text-white"
             href="https://feijai.github.io/Lunar/#/login"
           >
             開始使用

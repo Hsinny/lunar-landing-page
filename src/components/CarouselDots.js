@@ -1,6 +1,6 @@
 import classNames from "classnames";
 
-const Dots = ({ itemsLength, selectedIndex, onClick }) => {
+const  CarouselDots = ({ itemsLength, selectedIndex, onClick }) => {
   const arr = new Array(itemsLength).fill(0);
   return (
     <ul className="flex justify-center">
@@ -22,4 +22,4 @@ const Dots = ({ itemsLength, selectedIndex, onClick }) => {
     </ul>
   );
 };
-export default Dots;
+export default  CarouselDots;

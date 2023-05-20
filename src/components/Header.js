@@ -5,7 +5,7 @@ import { MenuOutlined, CloseOutlined } from '@ant-design/icons';
 
 const MenuLink = function ({href, title}) {
   return (
-    <li className="w-full border-t hover:bg-[#0083FF] hover:text-white">
+    <li className="w-full border-t hover:bg-blue hover:text-white">
       {href.startsWith("http") 
         ? <a href={href} className="block py-3">{title}</a>
         : <Link href={href} className="block py-3">{title}</Link>
@@ -18,7 +18,7 @@ export default function Header() {
   const [isNavOpen, setIsNavOpen] = useState(false);
 
   return (
-    <nav className="w-full fixed left-0 top-0 font-bold bg-white lg:bg-[#FAF7F5] z-50">
+    <nav className="w-full fixed left-0 top-0 font-bold bg-white lg:bg-bgcolor z-50">
       <div className="flex items-center justify-between mx-3 xl:mx-[166px]">
         <Link className="py-3 lg:py-5" href="/">
           <Image
@@ -49,7 +49,7 @@ export default function Header() {
           </ul>
           <ul className="flex text-sm">
             <li><a className="py-2 px-4 mr-4" href="https://feijai.github.io/Lunar/#/login">登入</a></li>
-            <li><a className="text-white py-2 px-4 bg-[#0083FF] rounded-md" href="https://feijai.github.io/Lunar/#/login">開始使用</a></li>
+            <li><a className="text-white py-2 px-4 bg-blue rounded-md" href="https://feijai.github.io/Lunar/#/login">開始使用</a></li>
           </ul>
         </div>
       </div>
