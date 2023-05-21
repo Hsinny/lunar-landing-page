@@ -387,8 +387,8 @@ export default function Home() {
               src="/images/lunar_pink_icon.png"
               alt="Lunar Pink Icon"
               className="p-1"
-              width={28}
-              height={28}
+              width={32}
+              height={32}
             />
             <h5 className="py-1 text-lg font-bold">
               管理任何專案 (不論規模大小)
@@ -398,14 +398,14 @@ export default function Home() {
             </p>
           </li>
           <li className="mb-3 flex flex-1 flex-col items-start rounded-lg border-t-4 border-blue bg-bgcolor bg-card-img bg-card-position bg-no-repeat px-6 pb-12 pt-7 shadow-3xl lg:mr-6">
-            <CoffeeOutlined className="px-1 text-xl text-pink" />
+            <CoffeeOutlined className="px-1 text-2xl text-pink" />
             <h5 className="py-1 text-lg font-bold">Lunar 讓工作煥然一新</h5>
             <p className="max-w-[300px] text-sm">
               輕鬆檢視完成進度，並快速識別障礙。
             </p>
           </li>
           <li className="mb-3 flex flex-1 flex-col items-start rounded-lg border-t-4 border-blue bg-bgcolor bg-card-img bg-card-position bg-no-repeat px-6 pb-12 pt-7 shadow-3xl">
-            <ClusterOutlined className="px-1 text-xl text-pink" />
+            <ClusterOutlined className="px-1 text-2xl text-pink" />
             <h5 className="py-1 text-lg font-bold">簡化流程追蹤</h5>
             <p className="max-w-[300px] text-sm">
               以視覺版面配置，在 Lunar
