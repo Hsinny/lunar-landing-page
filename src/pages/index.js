@@ -77,7 +77,7 @@ const CustomerLogos = () => {
 };
 
 export default function Home() {
-  const [imageUrl, setImageUrl] = useState('img_advantage_1.png');
+  const [imageUrl, setImageUrl] = useState('img_advantage_1.webp');
   const [scrollWidth, setScrollWidth] = useState(0);
 
   const handlePrevScroll = () => {
@@ -118,11 +118,12 @@ export default function Home() {
         </div>
         <div className="relative px-3">
           <Image
-            src="/images/img_banner.png"
+            src="/images/img_banner.webp"
             alt="Banner"
-            className="mx-auto drop-shadow-banner hover:cursor-banner"
+            className="mx-auto rounded-lg drop-shadow-banner hover:cursor-banner"
             width={1108}
-            height={616}
+            height={618}
+            priority
           />
         </div>
       </div>
@@ -142,7 +143,7 @@ export default function Home() {
             <li
               className="mb-3 flex cursor-pointer items-start px-4 py-3 hover:bg-greyF7"
               onClick={() => {
-                setImageUrl('img_advantage_1.png');
+                setImageUrl('img_advantage_1.webp');
               }}
             >
               <AppstoreAddOutlined className="rounded-lg bg-green p-2 text-sm leading-[14px] text-white" />
@@ -156,7 +157,7 @@ export default function Home() {
             <li
               className="mb-3 flex cursor-pointer items-start px-4 py-3 hover:bg-greyF7"
               onClick={() => {
-                setImageUrl('img_advantage_2.png');
+                setImageUrl('img_advantage_2.webp');
               }}
             >
               <MessageOutlined className="rounded-lg bg-blue p-2 text-sm leading-[14px] text-white" />
@@ -170,7 +171,7 @@ export default function Home() {
             <li
               className="mb-3 flex cursor-pointer items-start px-4 py-3 hover:bg-greyF7"
               onClick={() => {
-                setImageUrl('img_advantage_3.png');
+                setImageUrl('img_advantage_3.webp');
               }}
             >
               <CheckSquareOutlined className="rounded-lg bg-yellow p-2 text-sm leading-[14px] text-white" />
@@ -386,8 +387,8 @@ export default function Home() {
               src="/images/lunar_pink_icon.png"
               alt="Lunar Pink Icon"
               className="p-1"
-              width={26}
-              height={26}
+              width={28}
+              height={28}
             />
             <h5 className="py-1 text-lg font-bold">
               管理任何專案 (不論規模大小)
@@ -466,7 +467,7 @@ export default function Home() {
             </div>
           </li>
         </ul>
-        <div className="mx-auto mb-8 mt-[52px] flex h-60 max-w-[1108px] flex-col items-center justify-center rounded-lg bg-[url('/images/img_footer.png')] bg-no-repeat lg:mb-12 lg:mt-[84px]">
+        <div className="mx-auto mb-8 mt-[52px] flex h-60 max-w-[1108px] flex-col items-center justify-center rounded-lg bg-[url('/images/img_footer.webp')] bg-no-repeat lg:mb-12 lg:mt-[84px]">
           <h6 className="mb-6 text-2xl font-bold text-white">
             立即開啟您的體驗行程
           </h6>
