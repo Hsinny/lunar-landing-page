@@ -5,7 +5,7 @@ import { MenuOutlined, CloseOutlined } from '@ant-design/icons';
 
 const MenuLink = function ({href, title}) {
   return (
-    <li className="w-full border-t hover:bg-[#0083FF] hover:text-white">
+    <li className="w-full border-t hover:bg-blue hover:text-white">
       {href.startsWith("http") 
         ? <a href={href} className="block py-3">{title}</a>
         : <Link href={href} className="block py-3">{title}</Link>
@@ -18,7 +18,7 @@ export default function Header() {
   const [isNavOpen, setIsNavOpen] = useState(false);
 
   return (
-    <nav className="w-full fixed left-0 top-0 font-bold tracking-wide bg-[#FAF7F5] z-50">
+    <nav className="w-full fixed left-0 top-0 font-bold bg-white lg:bg-bgcolor z-50">
       <div className="flex items-center justify-between mx-3 xl:mx-[166px]">
         <Link className="py-3 lg:py-5" href="/">
           <Image
@@ -32,8 +32,8 @@ export default function Header() {
         </Link>
         <MenuOutlined className={`cursor-pointer py-6 px-6 lg:hidden ${isNavOpen ? "hidden" : ""}`} onClick={() => setIsNavOpen((prev) => !prev)} />
         <CloseOutlined className={`cursor-pointer py-6 px-6 lg:hidden ${isNavOpen ? "" : "hidden"}`} onClick={() => setIsNavOpen(false)} />
-        <div className={`absolute top-[64px] right-0 bg-[#FAF7F5] text-center w-full lg:hidden ${isNavOpen ? "" : "hidden"}`}>
-          <ul className="flex flex-col items-center text-base">
+        <div className={`absolute top-[64px] right-0 bg-white text-center w-full lg:hidden ${isNavOpen ? "" : "hidden"}`}>
+          <ul className="flex flex-col items-center text-base border-b">
             <MenuLink href="/about" title="關於 Lunar" />
             <MenuLink href="/features" title="功能介紹" />
             <MenuLink href="/contact" title="聯繫我們" />
@@ -49,7 +49,7 @@ export default function Header() {
           </ul>
           <ul className="flex text-sm">
             <li><a className="py-2 px-4 mr-4" href="https://feijai.github.io/Lunar/#/login">登入</a></li>
-            <li><a className="text-white py-2 px-4 bg-[#0083FF] rounded-md" href="https://feijai.github.io/Lunar/#/login">開始使用</a></li>
+            <li><a className="text-white py-2 px-4 bg-blue rounded-md" href="https://feijai.github.io/Lunar/#/login">開始使用</a></li>
           </ul>
         </div>
       </div>
