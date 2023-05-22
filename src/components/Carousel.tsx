@@ -1,6 +1,6 @@
-import useEmblaCarousel from 'embla-carousel-react';
-import React, { useEffect, useState, useCallback } from 'react';
-import CarouselDots from './CarouselDots';
+import useEmblaCarousel from "embla-carousel-react";
+import React, { useEffect, useState, useCallback } from "react";
+import CarouselDots from "./CarouselDots";
 
 const Carousel = ({ children, ...options }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel(options);
@@ -25,10 +25,10 @@ const Carousel = ({ children, ...options }) => {
   }
 
   useEffect(() => {
-    emblaApi?.on('select', selectHandler);
+    emblaApi?.on("select", selectHandler);
     // cleanup
     return () => {
-      emblaApi?.off('select', selectHandler);
+      emblaApi?.off("select", selectHandler);
     };
   }, [emblaApi]);
 
