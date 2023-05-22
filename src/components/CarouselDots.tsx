@@ -1,6 +1,6 @@
 import classNames from "classnames";
 
-const  CarouselDots = ({ itemsLength, selectedIndex, onClick }) => {
+const CarouselDots = ({ itemsLength, selectedIndex, onClick }) => {
   const arr = new Array(itemsLength).fill(0);
   return (
     <ul className="flex justify-center">
@@ -9,8 +9,7 @@ const  CarouselDots = ({ itemsLength, selectedIndex, onClick }) => {
         return (
           <li
             className={classNames({
-              "mr-2 inline-block rounded-full p-1 hover:bg-pink":
-                true,
+              "mr-2 inline-block rounded-full p-1 hover:bg-pink": true,
               "bg-pink": selected,
               "bg-greyD5": !selected,
             })}
@@ -22,4 +21,4 @@ const  CarouselDots = ({ itemsLength, selectedIndex, onClick }) => {
     </ul>
   );
 };
-export default  CarouselDots;
+export default CarouselDots;
