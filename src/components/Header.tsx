@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { MenuOutlined, CloseOutlined } from "@ant-design/icons";
 
-const MenuLink = function ({ href, title }) {
+function MenuLink({ href, title }: { href: string; title: string }) {
   return (
     <li className="w-full border-t hover:bg-blue hover:text-white">
       {href.startsWith("http") ? (
@@ -17,7 +17,7 @@ const MenuLink = function ({ href, title }) {
       )}
     </li>
   );
-};
+}
 
 export default function Header() {
   const [isNavOpen, setIsNavOpen] = useState(false);

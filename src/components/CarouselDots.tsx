@@ -1,6 +1,15 @@
 import classNames from "classnames";
+import { MouseEvent } from "react";
 
-const CarouselDots = ({ itemsLength, selectedIndex, onClick }) => {
+export default function CarouselDots({
+  itemsLength,
+  selectedIndex,
+  onClick,
+}: {
+  itemsLength: number;
+  selectedIndex: number;
+  onClick: (index: number) => (e: MouseEvent) => void;
+}) {
   const arr = new Array(itemsLength).fill(0);
   return (
     <ul className="flex justify-center">
@@ -20,5 +29,4 @@ const CarouselDots = ({ itemsLength, selectedIndex, onClick }) => {
       })}
     </ul>
   );
-};
-export default CarouselDots;
+}

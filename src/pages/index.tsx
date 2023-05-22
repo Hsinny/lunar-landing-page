@@ -15,31 +15,34 @@ import {
   ClusterOutlined,
 } from "@ant-design/icons";
 
-const SubContext = function ({
-  title,
-  subTitle,
-  context,
-  className,
-  alignCenter,
+function SubContext(props: {
+  title: string;
+  subTitle: string;
+  context: string;
+  alignCenter: boolean;
+  className?: string;
 }) {
   return (
     <div
-      className={`mx-auto max-w-[1108px] ${className} ${
-        alignCenter ? "text-center" : ""
+      className={`mx-auto max-w-[1108px] ${props.className} ${
+        props.alignCenter ? "text-center" : ""
       }`}
     >
       <span
         className={`inline-block rounded-[5px] bg-pink px-4 py-2 text-sm font-bold text-white`}
       >
-        {title}
+        {props.title}
       </span>
-      <h3 className="py-3 text-[32px] font-bold leading-10">{subTitle}</h3>
-      <p className="inline-block max-w-[542px] text-grey66">{context}</p>
+      <h3 className="py-3 text-[32px] font-bold leading-10">
+        {props.subTitle}
+      </h3>
+      <p className="inline-block max-w-[542px] text-grey66">{props.context}</p>
     </div>
   );
-};
-const CustomerLogos = () => {
-  let arrLists = [
+}
+
+function CustomerLogos() {
+  const arrLists = [
     "img_logo_00.png",
     "img_logo_01.png",
     "img_logo_02.png",
@@ -59,7 +62,7 @@ const CustomerLogos = () => {
     "img_logo_16.png",
   ];
 
-  let lists = [];
+  const lists = [];
 
   for (let i = 0; i < arrLists.length; i++) {
     lists.push(
@@ -74,18 +77,18 @@ const CustomerLogos = () => {
     );
   }
   return <>{lists}</>;
-};
+}
 
 export default function Home() {
   const [imageUrl, setImageUrl] = useState("img_advantage_1.webp");
   const [scrollWidth, setScrollWidth] = useState(0);
 
   const handlePrevScroll = () => {
-    let newScrollWidth = scrollWidth + parseInt(window.innerWidth / 2);
+    const newScrollWidth = scrollWidth + parseInt(`${window.innerWidth / 2}`);
     setScrollWidth(newScrollWidth);
   };
   const handleNextScroll = () => {
-    let newScrollWidth = scrollWidth - parseInt(window.innerWidth / 2);
+    const newScrollWidth = scrollWidth - parseInt(`${window.innerWidth / 2}`);
     setScrollWidth(newScrollWidth);
   };
 

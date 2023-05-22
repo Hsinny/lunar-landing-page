@@ -1,8 +1,19 @@
 import useEmblaCarousel from "embla-carousel-react";
-import React, { useEffect, useState, useCallback } from "react";
+import React, {
+  useEffect,
+  useState,
+  useCallback,
+  ReactNode,
+  MouseEvent,
+} from "react";
 import CarouselDots from "./CarouselDots";
 
-const Carousel = ({ children, ...options }) => {
+export default function Carousel({
+  children,
+  ...options
+}: {
+  children: ReactNode;
+}) {
   const [emblaRef, emblaApi] = useEmblaCarousel(options);
 
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -10,21 +21,21 @@ const Carousel = ({ children, ...options }) => {
   const length = React.Children.count(children);
 
   const scrollTo = useCallback(
-    (index) => emblaApi && emblaApi.scrollTo(index),
+    (index: number) => emblaApi && emblaApi.scrollTo(index),
     [emblaApi]
   );
 
-  const handleClick = (index) => (event) => {
+  const handleClick = (index: number) => (event: MouseEvent) => {
     event.preventDefault();
     scrollTo(index);
   };
 
-  function selectHandler() {
-    const index = emblaApi?.selectedScrollSnap();
-    setSelectedIndex(index || 0);
-  }
-
   useEffect(() => {
+    function selectHandler() {
+      const index = emblaApi?.selectedScrollSnap();
+      setSelectedIndex(index || 0);
+    }
+
     emblaApi?.on("select", selectHandler);
     // cleanup
     return () => {
@@ -44,5 +55,4 @@ const Carousel = ({ children, ...options }) => {
       />
     </>
   );
-};
-export default Carousel;
+}
