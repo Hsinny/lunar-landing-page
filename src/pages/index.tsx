@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import Image from 'next/image';
-import Layout from '@/components/Layout';
-import Carousel from '@/components/Carousel';
+import { useState } from "react";
+import Image from "next/image";
+import Layout from "@/components/Layout";
+import Carousel from "@/components/Carousel";
 import {
   AppstoreAddOutlined,
   MessageOutlined,
@@ -13,53 +13,56 @@ import {
   LeftOutlined,
   RightOutlined,
   ClusterOutlined,
-} from '@ant-design/icons';
+} from "@ant-design/icons";
 
-const SubContext = function ({
-  title,
-  subTitle,
-  context,
-  className,
-  alignCenter,
+function SubContext(props: {
+  title: string;
+  subTitle: string;
+  context: string;
+  alignCenter: boolean;
+  className?: string;
 }) {
   return (
     <div
-      className={`mx-auto max-w-[1108px] ${className} ${
-        alignCenter ? 'text-center' : ''
+      className={`mx-auto max-w-[1108px] ${props.className} ${
+        props.alignCenter ? "text-center" : ""
       }`}
     >
       <span
         className={`inline-block rounded-[5px] bg-pink px-4 py-2 text-sm font-bold text-white`}
       >
-        {title}
+        {props.title}
       </span>
-      <h3 className="py-3 text-[32px] font-bold leading-10">{subTitle}</h3>
-      <p className="inline-block max-w-[542px] text-grey66">{context}</p>
+      <h3 className="py-3 text-[32px] font-bold leading-10">
+        {props.subTitle}
+      </h3>
+      <p className="inline-block max-w-[542px] text-grey66">{props.context}</p>
     </div>
   );
-};
-const CustomerLogos = () => {
-  let arrLists = [
-    'img_logo_00.png',
-    'img_logo_01.png',
-    'img_logo_02.png',
-    'img_logo_03.png',
-    'img_logo_04.png',
-    'img_logo_05.png',
-    'img_logo_06.png',
-    'img_logo_07.png',
-    'img_logo_08.png',
-    'img_logo_09.png',
-    'img_logo_10.png',
-    'img_logo_11.png',
-    'img_logo_12.png',
-    'img_logo_13.png',
-    'img_logo_14.png',
-    'img_logo_15.png',
-    'img_logo_16.png',
+}
+
+function CustomerLogos() {
+  const arrLists = [
+    "img_logo_00.png",
+    "img_logo_01.png",
+    "img_logo_02.png",
+    "img_logo_03.png",
+    "img_logo_04.png",
+    "img_logo_05.png",
+    "img_logo_06.png",
+    "img_logo_07.png",
+    "img_logo_08.png",
+    "img_logo_09.png",
+    "img_logo_10.png",
+    "img_logo_11.png",
+    "img_logo_12.png",
+    "img_logo_13.png",
+    "img_logo_14.png",
+    "img_logo_15.png",
+    "img_logo_16.png",
   ];
 
-  let lists = [];
+  const lists = [];
 
   for (let i = 0; i < arrLists.length; i++) {
     lists.push(
@@ -74,18 +77,18 @@ const CustomerLogos = () => {
     );
   }
   return <>{lists}</>;
-};
+}
 
 export default function Home() {
-  const [imageUrl, setImageUrl] = useState('img_advantage_1.webp');
+  const [imageUrl, setImageUrl] = useState("img_advantage_1.webp");
   const [scrollWidth, setScrollWidth] = useState(0);
 
   const handlePrevScroll = () => {
-    let newScrollWidth = scrollWidth + parseInt(window.innerWidth / 2);
+    const newScrollWidth = scrollWidth + parseInt(`${window.innerWidth / 2}`);
     setScrollWidth(newScrollWidth);
   };
   const handleNextScroll = () => {
-    let newScrollWidth = scrollWidth - parseInt(window.innerWidth / 2);
+    const newScrollWidth = scrollWidth - parseInt(`${window.innerWidth / 2}`);
     setScrollWidth(newScrollWidth);
   };
 
@@ -143,7 +146,7 @@ export default function Home() {
             <li
               className="mb-3 flex cursor-pointer items-start px-4 py-3 hover:bg-greyF7"
               onClick={() => {
-                setImageUrl('img_advantage_1.webp');
+                setImageUrl("img_advantage_1.webp");
               }}
             >
               <AppstoreAddOutlined className="rounded-lg bg-green p-2 text-sm leading-[14px] text-white" />
@@ -157,7 +160,7 @@ export default function Home() {
             <li
               className="mb-3 flex cursor-pointer items-start px-4 py-3 hover:bg-greyF7"
               onClick={() => {
-                setImageUrl('img_advantage_2.webp');
+                setImageUrl("img_advantage_2.webp");
               }}
             >
               <MessageOutlined className="rounded-lg bg-blue p-2 text-sm leading-[14px] text-white" />
@@ -171,7 +174,7 @@ export default function Home() {
             <li
               className="mb-3 flex cursor-pointer items-start px-4 py-3 hover:bg-greyF7"
               onClick={() => {
-                setImageUrl('img_advantage_3.webp');
+                setImageUrl("img_advantage_3.webp");
               }}
             >
               <CheckSquareOutlined className="rounded-lg bg-yellow p-2 text-sm leading-[14px] text-white" />
@@ -205,7 +208,7 @@ export default function Home() {
             <ul
               id="scrollCard"
               className={`flex transition-[margin-left] duration-300`}
-              style={{ marginLeft: scrollWidth + 'px' }}
+              style={{ marginLeft: scrollWidth + "px" }}
             >
               <li className="mr-6 flex flex-none flex-col items-start rounded-lg border bg-bgcolor p-4 shadow-3xl">
                 <BellOutlined className="px-1 text-xl text-blue" />
