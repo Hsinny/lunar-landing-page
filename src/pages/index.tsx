@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import Image from 'next/image';
-import Layout from '@/components/Layout';
-import Carousel from '@/components/Carousel';
+import { useState } from "react";
+import Image from "next/image";
+import Layout from "@/components/Layout";
+import Carousel from "@/components/Carousel";
 import {
   AppstoreAddOutlined,
   MessageOutlined,
@@ -13,53 +13,56 @@ import {
   LeftOutlined,
   RightOutlined,
   ClusterOutlined,
-} from '@ant-design/icons';
+} from "@ant-design/icons";
 
-const SubContext = function ({
-  title,
-  subTitle,
-  context,
-  className,
-  alignCenter,
+function SubContext(props: {
+  title: string;
+  subTitle: string;
+  context: string;
+  alignCenter: boolean;
+  className?: string;
 }) {
   return (
     <div
-      className={`mx-auto max-w-[1108px] ${className} ${
-        alignCenter ? 'text-center' : ''
+      className={`mx-auto max-w-[1108px] ${props.className} ${
+        props.alignCenter ? "text-center" : ""
       }`}
     >
       <span
         className={`inline-block rounded-[5px] bg-pink px-4 py-2 text-sm font-bold text-white`}
       >
-        {title}
+        {props.title}
       </span>
-      <h3 className="py-3 text-[32px] font-bold leading-10">{subTitle}</h3>
-      <p className="inline-block max-w-[542px] text-grey66">{context}</p>
+      <h3 className="py-3 text-[32px] font-bold leading-10">
+        {props.subTitle}
+      </h3>
+      <p className="inline-block max-w-[542px] text-grey66">{props.context}</p>
     </div>
   );
-};
-const CustomerLogos = () => {
-  let arrLists = [
-    'img_logo_00.png',
-    'img_logo_01.png',
-    'img_logo_02.png',
-    'img_logo_03.png',
-    'img_logo_04.png',
-    'img_logo_05.png',
-    'img_logo_06.png',
-    'img_logo_07.png',
-    'img_logo_08.png',
-    'img_logo_09.png',
-    'img_logo_10.png',
-    'img_logo_11.png',
-    'img_logo_12.png',
-    'img_logo_13.png',
-    'img_logo_14.png',
-    'img_logo_15.png',
-    'img_logo_16.png',
+}
+
+function CustomerLogos() {
+  const arrLists = [
+    "img_logo_00.png",
+    "img_logo_01.png",
+    "img_logo_02.png",
+    "img_logo_03.png",
+    "img_logo_04.png",
+    "img_logo_05.png",
+    "img_logo_06.png",
+    "img_logo_07.png",
+    "img_logo_08.png",
+    "img_logo_09.png",
+    "img_logo_10.png",
+    "img_logo_11.png",
+    "img_logo_12.png",
+    "img_logo_13.png",
+    "img_logo_14.png",
+    "img_logo_15.png",
+    "img_logo_16.png",
   ];
 
-  let lists = [];
+  const lists = [];
 
   for (let i = 0; i < arrLists.length; i++) {
     lists.push(
@@ -74,18 +77,22 @@ const CustomerLogos = () => {
     );
   }
   return <>{lists}</>;
-};
+}
 
 export default function Home() {
-  const [imageUrl, setImageUrl] = useState('img_advantage_1.webp');
+  const [imageUrl, setImageUrl] = useState("img_advantage_1.webp");
   const [scrollWidth, setScrollWidth] = useState(0);
 
   const handlePrevScroll = () => {
-    let newScrollWidth = scrollWidth + parseInt(window.innerWidth / 2);
+    if (scrollWidth >= 0) {
+      setScrollWidth(0);
+      return;
+    }
+    const newScrollWidth = scrollWidth + parseInt(`${window.innerWidth / 2}`);
     setScrollWidth(newScrollWidth);
   };
   const handleNextScroll = () => {
-    let newScrollWidth = scrollWidth - parseInt(window.innerWidth / 2);
+    const newScrollWidth = scrollWidth - parseInt(`${window.innerWidth / 2}`);
     setScrollWidth(newScrollWidth);
   };
 
@@ -108,7 +115,7 @@ export default function Home() {
           <div className="mb-6">
             <input
               type="text"
-              className="mb-3 mr-3 rounded-lg border border-greyD5 bg-white px-4 py-3"
+              className="mb-3 mr-3 rounded-lg border border-greyD5 bg-white px-4 py-3 outline-none"
               placeholder="輸入 Email"
             />
             <button className="rounded-md bg-blue px-6 py-3 text-white">
@@ -143,7 +150,7 @@ export default function Home() {
             <li
               className="mb-3 flex cursor-pointer items-start px-4 py-3 hover:bg-greyF7"
               onClick={() => {
-                setImageUrl('img_advantage_1.webp');
+                setImageUrl("img_advantage_1.webp");
               }}
             >
               <AppstoreAddOutlined className="rounded-lg bg-green p-2 text-sm leading-[14px] text-white" />
@@ -157,7 +164,7 @@ export default function Home() {
             <li
               className="mb-3 flex cursor-pointer items-start px-4 py-3 hover:bg-greyF7"
               onClick={() => {
-                setImageUrl('img_advantage_2.webp');
+                setImageUrl("img_advantage_2.webp");
               }}
             >
               <MessageOutlined className="rounded-lg bg-blue p-2 text-sm leading-[14px] text-white" />
@@ -171,7 +178,7 @@ export default function Home() {
             <li
               className="mb-3 flex cursor-pointer items-start px-4 py-3 hover:bg-greyF7"
               onClick={() => {
-                setImageUrl('img_advantage_3.webp');
+                setImageUrl("img_advantage_3.webp");
               }}
             >
               <CheckSquareOutlined className="rounded-lg bg-yellow p-2 text-sm leading-[14px] text-white" />
@@ -203,9 +210,8 @@ export default function Home() {
         <div className="overflow-hidden">
           <div className="mx-auto max-w-[1108px]">
             <ul
-              id="scrollCard"
               className={`flex transition-[margin-left] duration-300`}
-              style={{ marginLeft: scrollWidth + 'px' }}
+              style={{ marginLeft: scrollWidth + "px" }}
             >
               <li className="mr-6 flex flex-none flex-col items-start rounded-lg border bg-bgcolor p-4 shadow-3xl">
                 <BellOutlined className="px-1 text-xl text-blue" />
@@ -425,15 +431,15 @@ export default function Home() {
           alignCenter={true}
         />
         <ul className="mt-8 flex flex-col justify-center lg:flex-row">
-          <li className="mb-3 basis-64 rounded-lg border-[3px] border-greyD5 shadow-3xl lg:mr-6 lg:basis-[353px]">
+          <li className="mb-3 flex basis-64 flex-col rounded-lg border-[3px] border-greyD5 bg-white shadow-3xl lg:mr-6 lg:basis-[353px]">
             <div className="px-9 pb-6 pt-8 text-center lg:pt-10">
-              <h6 className="text-2xl font-bold">Basic</h6>
-              <span className="align-middle text-lg font-bold">$</span>
+              <h6 className="mb-2 text-2xl font-extrabold">Basic</h6>
+              <span className="mr-2 align-middle text-lg font-bold">$</span>
               <span className="align-middle text-5xl font-bold">0</span>
-              <p className="text-sm text-grey9F">終生免費</p>
+              <p className="mt-2 text-sm text-grey9F">終生免費</p>
             </div>
             <hr />
-            <div className="px-9 pb-8 pt-6 lg:pb-10">
+            <div className="flex flex-1 flex-col justify-between px-9 pb-8 pt-6 lg:pb-10">
               <p className="mb-9 text-sm">
                 適用於 1 - 10 個用戶
                 <br />
@@ -444,19 +450,19 @@ export default function Home() {
               </button>
             </div>
           </li>
-          <li className="mb-3 basis-64 rounded-lg border-[3px] border-blue shadow-3xl lg:basis-[353px]">
+          <li className="mb-3 flex basis-64 flex-col rounded-lg border-[3px] border-blue bg-white shadow-3xl lg:basis-[353px]">
             <div className="px-9 pb-6 pt-8 text-center lg:pt-10">
-              <h6 className="text-2xl font-bold">Standard</h6>
-              <span className="align-middle text-lg font-bold text-blue">
+              <h6 className="mb-2 text-2xl font-extrabold">Standard</h6>
+              <span className="mr-2 align-middle text-lg font-bold text-blue">
                 $
               </span>
               <span className="align-middle text-5xl font-bold text-blue">
                 1,200
               </span>
-              <p className="text-sm text-grey9F">平均 $100 /月</p>
+              <p className="mt-2 text-sm text-grey9F">平均 $100 /月</p>
             </div>
             <hr />
-            <div className="px-9 pb-8 pt-6 lg:pb-10">
+            <div className="flex flex-1 flex-col justify-between px-9 pb-8 pt-6 lg:pb-10">
               <p className="mb-9 text-sm">
                 適用於需要以多種方式 (包括看板、時間表和行事曆等)
                 追蹤和呈現多個專案的團隊。
@@ -467,7 +473,7 @@ export default function Home() {
             </div>
           </li>
         </ul>
-        <div className="mx-auto mb-8 mt-[52px] flex h-60 max-w-[1108px] flex-col items-center justify-center rounded-lg bg-[url('/images/img_footer.webp')] bg-no-repeat lg:mb-12 lg:mt-[84px]">
+        <div className="mx-auto mb-8 mt-[52px] flex h-60 max-w-[1108px] flex-col items-center justify-center rounded-lg bg-[url('/images/img_footer.webp')] bg-center bg-no-repeat lg:mb-12 lg:mt-[84px]">
           <h6 className="mb-6 text-2xl font-bold text-white">
             立即開啟您的體驗行程
           </h6>
