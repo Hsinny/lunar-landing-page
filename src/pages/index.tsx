@@ -84,6 +84,10 @@ export default function Home() {
   const [scrollWidth, setScrollWidth] = useState(0);
 
   const handlePrevScroll = () => {
+    if (scrollWidth >= 0) {
+      setScrollWidth(0);
+      return;
+    }
     const newScrollWidth = scrollWidth + parseInt(`${window.innerWidth / 2}`);
     setScrollWidth(newScrollWidth);
   };
@@ -111,7 +115,7 @@ export default function Home() {
           <div className="mb-6">
             <input
               type="text"
-              className="mb-3 mr-3 rounded-lg border border-greyD5 bg-white px-4 py-3"
+              className="mb-3 mr-3 rounded-lg border border-greyD5 bg-white px-4 py-3 outline-none"
               placeholder="輸入 Email"
             />
             <button className="rounded-md bg-blue px-6 py-3 text-white">
@@ -206,7 +210,6 @@ export default function Home() {
         <div className="overflow-hidden">
           <div className="mx-auto max-w-[1108px]">
             <ul
-              id="scrollCard"
               className={`flex transition-[margin-left] duration-300`}
               style={{ marginLeft: scrollWidth + "px" }}
             >
@@ -428,15 +431,15 @@ export default function Home() {
           alignCenter={true}
         />
         <ul className="mt-8 flex flex-col justify-center lg:flex-row">
-          <li className="mb-3 basis-64 rounded-lg border-[3px] border-greyD5 shadow-3xl lg:mr-6 lg:basis-[353px]">
+          <li className="mb-3 flex basis-64 flex-col rounded-lg border-[3px] border-greyD5 bg-white shadow-3xl lg:mr-6 lg:basis-[353px]">
             <div className="px-9 pb-6 pt-8 text-center lg:pt-10">
-              <h6 className="text-2xl font-bold">Basic</h6>
-              <span className="align-middle text-lg font-bold">$</span>
+              <h6 className="mb-2 text-2xl font-extrabold">Basic</h6>
+              <span className="mr-2 align-middle text-lg font-bold">$</span>
               <span className="align-middle text-5xl font-bold">0</span>
-              <p className="text-sm text-grey9F">終生免費</p>
+              <p className="mt-2 text-sm text-grey9F">終生免費</p>
             </div>
             <hr />
-            <div className="px-9 pb-8 pt-6 lg:pb-10">
+            <div className="flex flex-1 flex-col justify-between px-9 pb-8 pt-6 lg:pb-10">
               <p className="mb-9 text-sm">
                 適用於 1 - 10 個用戶
                 <br />
@@ -447,19 +450,19 @@ export default function Home() {
               </button>
             </div>
           </li>
-          <li className="mb-3 basis-64 rounded-lg border-[3px] border-blue shadow-3xl lg:basis-[353px]">
+          <li className="mb-3 flex basis-64 flex-col rounded-lg border-[3px] border-blue bg-white shadow-3xl lg:basis-[353px]">
             <div className="px-9 pb-6 pt-8 text-center lg:pt-10">
-              <h6 className="text-2xl font-bold">Standard</h6>
-              <span className="align-middle text-lg font-bold text-blue">
+              <h6 className="mb-2 text-2xl font-extrabold">Standard</h6>
+              <span className="mr-2 align-middle text-lg font-bold text-blue">
                 $
               </span>
               <span className="align-middle text-5xl font-bold text-blue">
                 1,200
               </span>
-              <p className="text-sm text-grey9F">平均 $100 /月</p>
+              <p className="mt-2 text-sm text-grey9F">平均 $100 /月</p>
             </div>
             <hr />
-            <div className="px-9 pb-8 pt-6 lg:pb-10">
+            <div className="flex flex-1 flex-col justify-between px-9 pb-8 pt-6 lg:pb-10">
               <p className="mb-9 text-sm">
                 適用於需要以多種方式 (包括看板、時間表和行事曆等)
                 追蹤和呈現多個專案的團隊。
@@ -470,7 +473,7 @@ export default function Home() {
             </div>
           </li>
         </ul>
-        <div className="mx-auto mb-8 mt-[52px] flex h-60 max-w-[1108px] flex-col items-center justify-center rounded-lg bg-[url('/images/img_footer.webp')] bg-no-repeat lg:mb-12 lg:mt-[84px]">
+        <div className="mx-auto mb-8 mt-[52px] flex h-60 max-w-[1108px] flex-col items-center justify-center rounded-lg bg-[url('/images/img_footer.webp')] bg-center bg-no-repeat lg:mb-12 lg:mt-[84px]">
           <h6 className="mb-6 text-2xl font-bold text-white">
             立即開啟您的體驗行程
           </h6>
