@@ -16,27 +16,27 @@ export default function Footer() {
         </Link>
         <ul className="flex flex-wrap">
           <li className="mr-6 mt-2">
-            <Link href="#" className="hover:text-white">
+            <Link href="/about" className="hover:text-white">
               關於我們
             </Link>
           </li>
           <li className="mr-6 mt-2">
-            <Link href="#" className="hover:text-white">
+            <Link href="/features" className="hover:text-white">
               功能介紹
             </Link>
           </li>
           <li className="mr-6 mt-2">
-            <Link href="#" className="hover:text-white">
+            <Link href="/contact" className="hover:text-white">
               線上諮詢
             </Link>
           </li>
           <li className="mr-6 mt-2">
-            <Link href="#" className="hover:text-white">
+            <Link href="/privacy" className="hover:text-white">
               隱私權條款
             </Link>
           </li>
           <li className="mt-2">
-            <Link href="#" className="hover:text-white">
+            <Link href="/terms" className="hover:text-white">
               服務條款
             </Link>
           </li>
