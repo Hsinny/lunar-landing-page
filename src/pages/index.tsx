@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
 import Layout from "@/components/Layout";
 import Carousel from "@/components/Carousel";
@@ -81,19 +81,19 @@ function CustomerLogos() {
 
 export default function Home() {
   const [imageUrl, setImageUrl] = useState("img_advantage_1.webp");
-  const [scrollWidth, setScrollWidth] = useState(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   const handlePrevScroll = () => {
-    if (scrollWidth >= 0) {
-      setScrollWidth(0);
-      return;
+    if (scrollRef.current) {
+      const scrollLeft = scrollRef.current.scrollLeft;
+      scrollRef.current.scrollLeft = scrollLeft - 275;
     }
-    const newScrollWidth = scrollWidth + parseInt(`${window.innerWidth / 2}`);
-    setScrollWidth(newScrollWidth);
   };
   const handleNextScroll = () => {
-    const newScrollWidth = scrollWidth - parseInt(`${window.innerWidth / 2}`);
-    setScrollWidth(newScrollWidth);
+    if (scrollRef.current) {
+      const scrollLeft = scrollRef.current.scrollLeft;
+      scrollRef.current.scrollLeft = scrollLeft + 275;
+    }
   };
 
   return (
@@ -207,13 +207,10 @@ export default function Home() {
           className="px-3"
           alignCenter={false}
         />
-        <div className="overflow-hidden">
+        <div className="px-3 lg:px-0 overflow-x-hidden scroll-smooth" ref={scrollRef}>
           <div className="mx-auto max-w-[1108px]">
-            <ul
-              className={`flex transition-[margin-left] duration-300`}
-              style={{ marginLeft: scrollWidth + "px" }}
-            >
-              <li className="mr-6 flex flex-none flex-col items-start rounded-lg border bg-bgcolor p-4 shadow-3xl">
+            <ul className="flex duration-300 py-5">
+              <li className="mr-3 lg:mr-6 flex flex-none flex-col items-start rounded-lg border bg-bgcolor p-4 shadow-3xl">
                 <BellOutlined className="px-1 text-xl text-blue" />
                 <h5 className="py-1 text-lg font-bold">專案管理</h5>
                 <p className="max-w-[217px] text-sm">
@@ -221,14 +218,14 @@ export default function Home() {
                   Lunar，讓任務保持井然有序、掌握期限，以及讓團隊成員掌握一致資訊。
                 </p>
               </li>
-              <li className="mr-6 flex flex-none flex-col items-start rounded-lg border bg-bgcolor p-4 shadow-3xl">
+              <li className="mr-3 lg:mr-6 flex flex-none flex-col items-start rounded-lg border bg-bgcolor p-4 shadow-3xl">
                 <UsergroupAddOutlined className="px-1 text-xl text-blue" />
                 <h5 className="py-1 text-lg font-bold">會議</h5>
                 <p className="max-w-[217px] text-sm">
                   讓您的團隊會議更有成效、更強大，並且我們敢說，會更加有趣。
                 </p>
               </li>
-              <li className="mr-6 flex flex-none flex-col items-start rounded-lg border bg-bgcolor p-4 shadow-3xl">
+              <li className="mr-3 lg:mr-6 flex flex-none flex-col items-start rounded-lg border bg-bgcolor p-4 shadow-3xl">
                 <UnorderedListOutlined className="px-1 text-xl text-blue" />
                 <h5 className="py-1 text-lg font-bold">新手訓練</h5>
                 <p className="max-w-[217px] text-sm">
@@ -236,7 +233,7 @@ export default function Home() {
                   的待辦事項、資源和進度追蹤版面配置，快速完成新公司入職手續或著手開始新專案。
                 </p>
               </li>
-              <li className="mr-6 flex flex-none flex-col items-start rounded-lg border bg-bgcolor p-4 shadow-3xl">
+              <li className="mr-3 lg:mr-6 flex flex-none flex-col items-start rounded-lg border bg-bgcolor p-4 shadow-3xl">
                 <AppstoreAddOutlined className="px-1 text-xl text-blue" />
                 <h5 className="py-1 text-lg font-bold">任務管理</h5>
                 <p className="max-w-[217px] text-sm">
@@ -244,25 +241,27 @@ export default function Home() {
                   追蹤、管理、完成和彙集任務，就像拼圖一樣，每次都能讓團隊的專案取得一致成功。
                 </p>
               </li>
-              <li className="mr-6 flex flex-none flex-col items-start rounded-lg border bg-bgcolor p-4 shadow-3xl">
+              <li className="flex flex-none flex-col items-start rounded-lg border bg-bgcolor p-4 shadow-3xl">
                 <CoffeeOutlined className="px-1 text-xl text-blue" />
                 <h5 className="py-1 text-lg font-bold">腦力激盪</h5>
                 <p className="max-w-[217px] text-sm">
                   發揮團隊的創造力，讓想法醒目可見、可合力完成且付諸實現。
                 </p>
               </li>
+              {/* For 佔位 */}
+              <li className="pr-[calc((100vw_-_1080px)_/_2)]">&nbsp;</li>
             </ul>
           </div>
-          <div className="mx-auto mt-8 max-w-[1108px] px-3 text-right">
-            <LeftOutlined
-              className="cursor-pointer rounded-full bg-blue p-4 text-xs text-white"
-              onClick={handlePrevScroll}
-            />
-            <RightOutlined
-              className="ml-8 cursor-pointer rounded-full bg-blue p-4 text-xs text-white"
-              onClick={handleNextScroll}
-            />
-          </div>
+        </div>
+        <div className="mx-auto mt-3 max-w-[1108px] px-3 text-right">
+          <LeftOutlined
+            className="cursor-pointer rounded-full bg-blue p-4 text-xs text-white"
+            onClick={handlePrevScroll}
+          />
+          <RightOutlined
+            className="ml-8 cursor-pointer rounded-full bg-blue p-4 text-xs text-white"
+            onClick={handleNextScroll}
+          />
         </div>
       </div>
       <div
