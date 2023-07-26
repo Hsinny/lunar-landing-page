@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Layout from '@/components/Layout';
 import Image from 'next/image';
 import { AntDesignOutlined, ProjectOutlined } from '@ant-design/icons';
+import { CLIENT_URL } from '@/config';
 
 export default function About() {
   const [tabIndex, setTabIndex] = useState(0);
@@ -29,7 +30,7 @@ export default function About() {
         </div>
         <a
           className="mb-12 inline-block rounded-md bg-blue px-4 py-2 text-white"
-          href="https://feijai.github.io/Lunar/#/login"
+          href={CLIENT_URL}
         >
           開始使用
         </a>
@@ -209,7 +210,7 @@ export default function About() {
           </h6>
           <a
             className="rounded-md bg-blue px-4 py-2 text-white"
-            href="https://feijai.github.io/Lunar/#/login"
+            href={CLIENT_URL}
           >
             開始使用
           </a>

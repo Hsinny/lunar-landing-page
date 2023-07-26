@@ -14,6 +14,7 @@ import {
   RightOutlined,
   ClusterOutlined,
 } from "@ant-design/icons";
+import { CLIENT_URL } from "@/config";
 
 function SubContext(props: {
   title: string;
@@ -478,7 +479,7 @@ export default function Home() {
           </h6>
           <a
             className="rounded-md bg-blue px-4 py-2 text-white"
-            href="https://feijai.github.io/Lunar/#/login"
+            href={CLIENT_URL}
           >
             開始使用
           </a>
