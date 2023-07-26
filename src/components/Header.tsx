@@ -2,6 +2,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { MenuOutlined, CloseOutlined } from "@ant-design/icons";
+import { CLIENT_URL } from "@/config";
 
 function MenuLink({ href, title }: { href: string; title: string }) {
   return (
@@ -57,11 +58,11 @@ export default function Header() {
             <MenuLink href="/features" title="功能介紹" />
             <MenuLink href="/contact" title="聯繫我們" />
             <MenuLink
-              href="https://feijai.github.io/Lunar/#/login"
+              href={CLIENT_URL}
               title="登入"
             />
             <MenuLink
-              href="https://feijai.github.io/Lunar/#/login"
+              href={CLIENT_URL}
               title="開始使用"
             />
           </ul>
@@ -88,7 +89,7 @@ export default function Header() {
             <li>
               <a
                 className="mr-4 px-4 py-2"
-                href="https://feijai.github.io/Lunar/#/login"
+                href={CLIENT_URL}
               >
                 登入
               </a>
@@ -96,7 +97,7 @@ export default function Header() {
             <li>
               <a
                 className="rounded-md bg-blue px-4 py-2 text-white"
-                href="https://feijai.github.io/Lunar/#/login"
+                href={CLIENT_URL}
               >
                 開始使用
               </a>
